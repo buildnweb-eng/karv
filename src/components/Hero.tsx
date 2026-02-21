@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import heroImg from "@/assets/hero-parallettes.jpg";
 import bullSymbol from "@/assets/bull-symbol.png";
 
@@ -14,10 +15,6 @@ export default function Hero() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const scrollTo = (id: string) => {
-    document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
-  };
 
   return (
     <section
@@ -66,18 +63,18 @@ export default function Hero() {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-up animation-delay-600">
-            <button
-              onClick={() => scrollTo("#products")}
-              className="font-body font-semibold text-sm tracking-widest uppercase px-10 py-4 bg-primary text-primary-foreground hover:bg-wood-dark transition-all duration-300 rounded-sm glow-wood"
+            <Link
+              to="/products"
+              className="font-body font-semibold text-sm tracking-widest uppercase px-10 py-4 bg-primary text-primary-foreground hover:bg-wood-dark transition-all duration-300 rounded-sm glow-wood text-center"
             >
               Shop Now
-            </button>
-            <button
-              onClick={() => scrollTo("#customize")}
-              className="font-body font-semibold text-sm tracking-widest uppercase px-10 py-4 border border-foreground/20 text-foreground hover:border-primary hover:text-primary transition-all duration-300 rounded-sm"
+            </Link>
+            <Link
+              to="/customize"
+              className="font-body font-semibold text-sm tracking-widest uppercase px-10 py-4 border border-foreground/20 text-foreground hover:border-primary hover:text-primary transition-all duration-300 rounded-sm text-center"
             >
               Customize Yours
-            </button>
+            </Link>
           </div>
 
           {/* Stats */}

@@ -1,14 +1,8 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
-import ProductShowcase from "@/components/ProductShowcase";
-import Customizer from "@/components/Customizer";
 import WhyKarv from "@/components/WhyKarv";
 import WoodSelection from "@/components/WoodSelection";
-import Training from "@/components/Training";
-import Founders from "@/components/Founders";
-import Testimonials from "@/components/Testimonials";
-import FAQ from "@/components/FAQ";
-import Contact from "@/components/Contact";
+import FloatingCart from "@/components/FloatingCart";
 import Footer from "@/components/Footer";
 
 export default function Index() {
@@ -21,17 +15,11 @@ export default function Index() {
 
       <main>
         <Hero />
-        <ProductShowcase />
         <WhyKarv />
-        <Customizer />
         <WoodSelection />
-        <Training />
-        <Founders />
-        <Testimonials />
-        <FAQ />
-        <Contact />
       </main>
 
+      <FloatingCart />
       <Footer />
     </>
   );
