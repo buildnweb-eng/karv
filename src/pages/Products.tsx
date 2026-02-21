@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { ShoppingCart, Star, ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "@/contexts/CartContext";
+import { useAuth } from "@/contexts/AuthContext";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import FloatingCart from "@/components/FloatingCart";
@@ -54,10 +55,18 @@ const products = [
 
 export default function Products() {
   const { addToCart } = useCart();
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
   const [addedId, setAddedId] = useState<string | null>(null);
   const { ref, visible } = useReveal();
 
   const handleAddToCart = (product: typeof products[0]) => {
+    // Check if user is authenticated
+    if (!isAuthenticated) {
+      navigate("/login");
+      return;
+    }
+
     addToCart({
       id: product.id,
       name: product.name,

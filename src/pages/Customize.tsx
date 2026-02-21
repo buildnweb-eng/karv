@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Check, ShoppingCart, ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "@/contexts/CartContext";
+import { useAuth } from "@/contexts/AuthContext";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import FloatingCart from "@/components/FloatingCart";
@@ -30,6 +31,8 @@ const finishOptions = [
 
 export default function Customize() {
   const { addToCart } = useCart();
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
   const [wood, setWood] = useState("teak");
   const [size, setSize] = useState("standard");
   const [finish, setFinish] = useState("natural");
@@ -47,6 +50,12 @@ export default function Customize() {
   const total = basePrice + woodExtra + sizeExtra + finishExtra;
 
   const handleAddToCart = () => {
+    // Check if user is authenticated
+    if (!isAuthenticated) {
+      navigate("/login");
+      return;
+    }
+
     addToCart({
       id: `custom-${Date.now()}`,
       name: "Custom Karv Parallettes",
